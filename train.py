@@ -3,6 +3,7 @@ import time
 from tqdm import tqdm
 import torch
 import math
+import csv
 
 from torch.utils.data import DataLoader
 from torch.nn import DataParallel
@@ -111,9 +112,12 @@ def train_epoch(model, optimizer, baseline, lr_scheduler, epoch, val_dataset, pr
             },
             os.path.join(opts.save_dir, 'epoch-{}.pt'.format(epoch))
         )
-
+    
     avg_reward = validate(model, val_dataset, opts)
-
+    with open('training_kool.csv', 'w', encoding='UTF8') as f:
+        writer = csv.writer(f)
+        writer.writerow([step, avg_reward])
+   
     # if not opts.no_tensorboard:
     #     tb_logger.log_value('val_avg_reward', avg_reward, step)
 

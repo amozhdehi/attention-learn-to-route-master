@@ -3,6 +3,7 @@
 import os
 import json
 import pprint as pp
+import csv 
 
 import torch
 import torch.optim as optim
@@ -150,7 +151,10 @@ def run(opts):
         baseline.epoch_callback(model, epoch_resume)
         print("Resuming after {}".format(epoch_resume))
         opts.epoch_start = epoch_resume + 1
-
+    header = ['iter', 'val_obj']
+    with open('training_kool.csv', 'w', encoding='UTF8') as f:
+        writer = csv.writer(f)
+        writer.writerow(header)
     if opts.eval_only:
         validate(model, val_dataset, opts)
     else:
@@ -165,6 +169,7 @@ def run(opts):
                 problem,
                 opts
             )
+
 
 
 if __name__ == "__main__":
