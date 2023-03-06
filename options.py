@@ -68,7 +68,7 @@ def get_options(args=None):
                         help='Save checkpoint every n epochs (default 1), 0 to save no checkpoints')
     parser.add_argument('--load_path', help='Path to load model parameters and optimizer state from')
     parser.add_argument('--resume', help='Resume from previous checkpoint file')
-    parser.add_argument('--no_tensorboard', action='store_true', help='Disable logging TensorBoard files')
+    parser.add_argument('--no_tensorboard', action='store_false', help='Disable logging TensorBoard files')
     parser.add_argument('--no_progress_bar', action='store_true', help='Disable progress bar')
 
     opts = parser.parse_args(args)

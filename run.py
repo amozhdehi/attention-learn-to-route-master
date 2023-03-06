@@ -6,7 +6,7 @@ import pprint as pp
 
 import torch
 import torch.optim as optim
-from tensorboard_logger import Logger as TbLogger
+#from tensorboard_logger import Logger as TbLogger
 
 from nets.critic_network import CriticNetwork
 from options import get_options
@@ -26,9 +26,9 @@ def run(opts):
     torch.manual_seed(opts.seed)
 
     # Optionally configure tensorboard
-    tb_logger = None
-    if not opts.no_tensorboard:
-        tb_logger = TbLogger(os.path.join(opts.log_dir, "{}_{}".format(opts.problem, opts.graph_size), opts.run_name))
+    # tb_logger = None
+    # if not opts.no_tensorboard:
+    #     tb_logger = TbLogger(os.path.join(opts.log_dir, "{}_{}".format(opts.problem, opts.graph_size), opts.run_name))
 
     os.makedirs(opts.save_dir)
     # Save arguments so exact configuration can always be found
@@ -163,7 +163,6 @@ def run(opts):
                 epoch,
                 val_dataset,
                 problem,
-                tb_logger,
                 opts
             )
 
